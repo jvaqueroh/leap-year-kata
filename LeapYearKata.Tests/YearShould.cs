@@ -1,4 +1,5 @@
 ﻿using System;
+using NUnit.Framework;
 
 namespace LeapYearKata.Tests {
     /// <summary>
@@ -9,5 +10,12 @@ namespace LeapYearKata.Tests {
     ///   Year that is not divisible by 4 IS NOT a leap year
     /// </summary>
     public class YearShould {
+        [Test]
+        public void returns_true_when_divisible_by_400()
+        {
+            var year = new Year(400);
+            var result = year.IsLeapYear();
+            Assert.IsTrue(result);
+        }
     }
 }
