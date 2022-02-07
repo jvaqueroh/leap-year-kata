@@ -11,7 +11,7 @@ namespace LeapYearKata {
 
         public bool IsLeapYear()
         {
-            throw new NotImplementedException();
+            return true;
         }
     }
 }
