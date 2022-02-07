@@ -11,7 +11,7 @@ namespace LeapYearKata.Tests {
     /// </summary>
     public class YearShould {
         [Test]
-        public void returns_true_when_divisible_by_400()
+        public void returns_true_for_400()
         {
             var year = new Year(400);
             var result = year.IsLeapYear();
@@ -19,7 +19,7 @@ namespace LeapYearKata.Tests {
         }
 
         [Test]
-        public void returns_false_when_not_divisible_by_400()
+        public void returns_false_for_401()
         {
             var year = new Year(401);
             var result = year.IsLeapYear();
