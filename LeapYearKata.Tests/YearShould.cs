@@ -17,5 +17,13 @@ namespace LeapYearKata.Tests {
             var result = year.IsLeapYear();
             Assert.IsTrue(result);
         }
+
+        [Test]
+        public void returns_false_when_not_divisible_by_400()
+        {
+            var year = new Year(401);
+            var result = year.IsLeapYear();
+            Assert.IsFalse(result);
+        }
     }
 }
