@@ -42,11 +42,11 @@ namespace LeapYearKata.Tests {
 
                 ///   Year that is divisible by 100 but not by 400 IS NOT a leap year
                 yield return new TestFixtureData(100, false);
+                yield return new TestFixtureData(300, false);
 
                 ///   Year that is divisible by 4 but not by 100 IS a leap year
                 yield return new TestFixtureData(4, true);
-
-
+                
                 ///   Year that is not divisible by 4 IS NOT a leap year
             }
         }
