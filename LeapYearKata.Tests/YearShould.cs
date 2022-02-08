@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections;
 using NUnit.Framework;
 
 namespace LeapYearKata.Tests {
@@ -9,29 +10,35 @@ namespace LeapYearKata.Tests {
     ///   Year that is divisible by 4 but not by 100 IS a leap year
     ///   Year that is not divisible by 4 IS NOT a leap year
     /// </summary>
+    [TestFixtureSource(typeof(LeapYearsFixtureData), nameof(LeapYearsFixtureData.FixtureParams))]
     public class YearShould {
-        [Test]
-        public void returns_true_for_400()
+        private readonly Year year;
+        private readonly bool isLeapYear;
+
+        public YearShould(int year, bool isLeapYear)
         {
-            var year = new Year(400);
-            var result = year.IsLeapYear();
-            Assert.IsTrue(result);
+            this.year = new Year(year);
+            this.isLeapYear = isLeapYear;
         }
 
         [Test]
-        public void returns_true_for_800()
+        public void check_is_leap_year()
         {
-            var year = new Year(800);
             var result = year.IsLeapYear();
-            Assert.IsTrue(result);
+            Assert.AreEqual(isLeapYear, result);
         }
+    }
 
-        [Test]
-        public void returns_false_for_401()
+    public class LeapYearsFixtureData
+    {
+        public static IEnumerable FixtureParams
         {
-            var year = new Year(401);
-            var result = year.IsLeapYear();
-            Assert.IsFalse(result);
+            get
+            {
+                yield return new TestFixtureData(400, true);
+                yield return new TestFixtureData(401, false);
+                yield return new TestFixtureData(800, true);
+            }
         }
     }
 }
