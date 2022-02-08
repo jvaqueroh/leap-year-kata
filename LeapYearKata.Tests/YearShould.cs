@@ -19,6 +19,14 @@ namespace LeapYearKata.Tests {
         }
 
         [Test]
+        public void returns_true_for_800()
+        {
+            var year = new Year(800);
+            var result = year.IsLeapYear();
+            Assert.IsTrue(result);
+        }
+
+        [Test]
         public void returns_false_for_401()
         {
             var year = new Year(401);

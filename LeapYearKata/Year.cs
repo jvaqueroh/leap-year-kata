@@ -11,7 +11,8 @@ namespace LeapYearKata {
 
         public bool IsLeapYear()
         {
-            return value.Equals(400);
+            var module = value % 400;
+            return module == 0;
         }
     }
 }
