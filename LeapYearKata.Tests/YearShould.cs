@@ -53,6 +53,7 @@ namespace LeapYearKata.Tests {
                 
                 ///   Year that is NOT divisible by 4 IS NOT a leap year
                 yield return new TestFixtureData(5, false);
+                yield return new TestFixtureData(2005, false);
             }
         }
     }
