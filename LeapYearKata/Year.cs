@@ -11,19 +11,11 @@ namespace LeapYearKata {
 
         public bool IsLeapYear()
         {
-            var isDivisibleBy400 = (value % 400) == 0;
-            if (isDivisibleBy400) 
+            if ((value % 400) == 0) 
                 return true;
-            
-            var isDivisibleBy100 = (value % 100) == 0;
-            if(isDivisibleBy100 && !isDivisibleBy400)
+            if((value % 100) == 0)
                 return false;
-
-            var isDivisibleBy4 = (value % 4) == 0;
-            if (isDivisibleBy4 && !isDivisibleBy100)
-                return true;
-            
-            return false;
+            return (value % 4) == 0;
         }
     }
 }
