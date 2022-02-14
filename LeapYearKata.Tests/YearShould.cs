@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Collections;
 using NUnit.Framework;
 
 namespace LeapYearKata.Tests {
@@ -10,51 +9,45 @@ namespace LeapYearKata.Tests {
     ///   Year that is divisible by 4 but not by 100 IS a leap year
     ///   Year that is not divisible by 4 IS NOT a leap year
     /// </summary>
-    [TestFixtureSource(typeof(LeapYearsFixtureData), nameof(LeapYearsFixtureData.FixtureParams))]
     public class YearShould {
-        private readonly Year year;
-        private readonly bool isLeapYear;
-
-        public YearShould(int year, bool isLeapYear)
+        [TestCase(400)]
+        [TestCase(800)]
+        [TestCase(2000)]
+        [TestCase(2400)]
+        public void return_true_is_divisible_by_400(int value)
         {
-            this.year = new Year(year);
-            this.isLeapYear = isLeapYear;
+            var year1 = new Year(value);
+            Assert.IsTrue(year1.IsLeapYear());
         }
 
-        [Test]
-        public void check_is_leap_year()
+        [TestCase(100)]
+        [TestCase(1300)]
+        [TestCase(2100)]
+        [TestCase(2200)]
+        public void return_false_if_divisible_by_100_nor_by_400(int value)
         {
-            var result = year.IsLeapYear();
-            Assert.AreEqual(isLeapYear, result);
+            var year1 = new Year(value);
+            Assert.IsFalse(year1.IsLeapYear());
         }
-    }
 
-    public class LeapYearsFixtureData
-    {
-        public static IEnumerable FixtureParams
+        [TestCase(4)]
+        [TestCase(8)]
+        [TestCase(2004)]
+        [TestCase(2024)]
+        public void return_true_if_divisible_by_4_nor_by_100(int value)
         {
-            get
-            {
-                ///   Year that is divisible by 400 IS a leap year
-                yield return new TestFixtureData(400,  true);
-                yield return new TestFixtureData(800,  true);
-                yield return new TestFixtureData(401,  false);
-                yield return new TestFixtureData(2000, true);
+            var year1 = new Year(value);
+            Assert.IsTrue(year1.IsLeapYear());
+        }
 
-                ///   Year that is divisible by 100 but not by 400 IS NOT a leap year
-                yield return new TestFixtureData(100, false);
-                yield return new TestFixtureData(300, false);
-                yield return new TestFixtureData(2100, false);
-
-                ///   Year that is divisible by 4 but not by 100 IS a leap year
-                yield return new TestFixtureData(4, true);
-                yield return new TestFixtureData(8, true);
-                yield return new TestFixtureData(2004, true);
-                
-                ///   Year that is NOT divisible by 4 IS NOT a leap year
-                yield return new TestFixtureData(5, false);
-                yield return new TestFixtureData(2005, false);
-            }
+        [TestCase(5)]
+        [TestCase(2001)]
+        [TestCase(2021)]
+        [TestCase(2023)]
+        public void return_false_if_not_divisible_by_4(int value)
+        {
+            var year1 = new Year(value);
+            Assert.IsFalse(year1.IsLeapYear());
         }
     }
 }
